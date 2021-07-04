@@ -1,5 +1,21 @@
 import hashlib
-from hash_methods import *
+def md5_hasher(string):
+    h=hashlib.md5(string.encode('utf-8'))
+    hash=h.hexdigest()
+    return hash
+def sha256_hasher(string):
+    h=hashlib.sha256(string.encode('utf-8'))
+    hash=h.hexdigest()
+    return hash
+
+def sha1_hasher(string):
+    h=hashlib.sha1(string.encode('utf-8'))
+    hash=h.hexdigest()
+    return hash
+def salted_hash(algo,string,salt,iterations):
+    h=hashlib.pbkdf2_hmac(algo,string.encode('utf-8'),salt.encode('utf-8'),iterations)
+    return h.hex()
+
 def main():
     string=input("Enter String To Hash: ")
     hash_algorithm=input("Select Hashing Algorithm: \n1.MD5 \n2.SHA256 \n3.SHA1\n")
